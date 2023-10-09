@@ -4,6 +4,11 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.text.MessageFormat;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
@@ -55,6 +60,33 @@ class Symptoms {
         return mapSymptoms;
     }
 
+    // -- Functions --
+
+    /** 
+     * Write results to a file
+     * 
+     * @param pathToFile Path to a text file to write on the filesystem
+     * @throws IOException Thrown if the given path either does not exist, or is not writable
+     */
+    public final @NotNull void writeToFile(@NotNull final String pathToFile) throws IOException {
+        var file = new File(pathToFile);
+        try {
+            file.createNewFile();
+        } catch (IOException e) {
+        }
+
+        List<String> lines = new ArrayList<>();
+        for (var symptom : getSymptoms().entrySet()) {
+            // Replace with String template when released (Preview in Java21)
+            lines.add(MessageFormat.format("{0} : {1}", symptom.getKey(), symptom.getValue()));
+        }
+
+        try {
+            Files.write(file.toPath(), lines, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     // -- Ctors --
 
