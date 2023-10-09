@@ -26,10 +26,14 @@ jobs:
     - name: Test
       run: gradle test
 
+    - name: Get path to output
+      id: path_output
+      run: echo "outputPath=$(find . -name "TEST-*.xml")" >> "$GITHUB_OUTPUT"
+
     - name: Publish test report
       uses: dorny/test-reporter@v1
       with:
         name: JUnit-report
-        path: '${{ github.workspace }}/build/test-results/TEST-*.xml'
+        path: ${{ steps.path_output.outputs.outputPath }}
         fail-on-error: true
         reporter: java-junit
