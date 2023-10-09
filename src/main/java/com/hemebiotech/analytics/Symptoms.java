@@ -49,6 +49,12 @@ class Symptoms {
 
     // public
 
+    // -- Getters --
+
+    public final @NotNull SortedMap<String, Integer> getSymptoms() {
+        return mapSymptoms;
+    }
+
 
     // -- Ctors --
 
