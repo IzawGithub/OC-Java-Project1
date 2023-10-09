@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -19,6 +21,29 @@ import org.jetbrains.annotations.NotNull;
  */
 class Symptoms {
     // private
+
+    SortedMap<String, Integer> mapSymptoms = new TreeMap<>();
+
+    /**
+     * Read a file and put data in the map 
+     * 
+     * @param fileToRead Opened file to read
+     */
+    private @NotNull void Read(@NotNull final BufferedReader fileToRead) {
+        // No need for error checking, Ctor already sanitized it
+        try {
+            var line = fileToRead.readLine();
+            while (line != null) {
+                if (mapSymptoms.containsKey(line)) {
+                    mapSymptoms.put(line, mapSymptoms.get(line) + 1);
+                } else {
+                    mapSymptoms.put(line, 1);
+                }
+                line = fileToRead.readLine();
+            }
+        } catch (IOException e) {
+        }
+    }
 
     // protected
 
