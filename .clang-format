@@ -1,0 +1,27 @@
+﻿---
+BasedOnStyle: LLVM
+AccessModifierOffset: '-4'
+AllowAllArgumentsOnNextLine: false
+AlignAfterOpenBracket: BlockIndent
+AllowShortIfStatementsOnASingleLine: Never
+AlwaysBreakTemplateDeclarations: Yes
+BinPackArguments: false
+BinPackParameters: false
+BreakBeforeBraces: Allman
+ColumnLimit: '80'
+FixNamespaceComments: true
+IncludeBlocks: Preserve
+IndentCaseLabels: true
+IndentWidth: '4'
+NamespaceIndentation: All
+ReflowComments: false
+SortIncludes: true
+SortUsingDeclarations: true
+SpaceBeforeParens: ControlStatements
+UseTab: Never
+UseCRLF: false
+QualifierAlignment: Left
+PointerAlignment: Left
+ReferenceAlignment: Pointer
+
+...
