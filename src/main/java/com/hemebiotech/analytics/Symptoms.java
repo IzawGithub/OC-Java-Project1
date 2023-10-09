@@ -77,6 +77,7 @@ class Symptoms {
             throw new IOException("Path given does not exist, or is not a file");
         }
         var fileReader = new BufferedReader(new FileReader(file));
+        Read(fileReader);
         // BufferedReader implements java.lang.AutoCloseable, does not leak
     }
 }
