@@ -3,7 +3,7 @@ name: Java Test
 on: push
 
 permissions:
-  contents: write
+  checks: write
 
 jobs:
   build:
