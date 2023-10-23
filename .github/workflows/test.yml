@@ -1,0 +1,36 @@
+name: Java Test
+
+on: push
+
+jobs:
+  build:
+    name: Build Java project
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+
+    - name: Setup Gradle
+      uses: gradle/gradle-build-action@v2
+      with:
+        gradle-version: current
+    
+    - name: Test
+      run: gradle test
+
+    - name: Get path to output
+      id: path_output
+      run: echo "outputPath=$(find . -name "")" >> "$GITHUB_OUTPUT"
+
+    - name: Publish test report
+      uses: dorny/test-reporter@v1
+      with:
+        name: JUnit-report
+        path: "build/**/TEST-*.xml"
+        fail-on-error: true
+        reporter: java-junit
