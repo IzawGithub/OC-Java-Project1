@@ -10,6 +10,7 @@ public interface ICountSymptoms {
      * 
      * @param txtSymptoms Newline separated string of symptoms
      * @return SortedMap<String, Integer> of the symptoms and the number of occurence of each.
+     * 
      */
     public @NotNull Map<String, Integer> count(@NotNull final String txtSymptoms);
 }
